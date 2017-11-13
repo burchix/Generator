@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ContinousDistributionEnum.cs" />
     <Compile Include="Models\Dimacs.cs" />
     <Compile Include="DimacsWriter.cs" />
     <Compile Include="Generator.cs">
@@ -66,6 +67,7 @@
     <Compile Include="GeneratorImpl.cs" />
     <Compile Include="Interafces\IDimacsWriter.cs" />
     <Compile Include="Interafces\IGeneratorImpl.cs" />
+    <Compile Include="Models\DiscreteDistributionEnum.cs" />
     <Compile Include="Models\GeneratorTypeEnum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

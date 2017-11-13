@@ -34,13 +34,17 @@ namespace Generator
             this.generateButton = new System.Windows.Forms.Button();
             this.fileNameLabel = new System.Windows.Forms.Label();
             this.fileNameTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.noOfVariablesLabel = new System.Windows.Forms.Label();
             this.noOfVariableUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
+            this.maxLengthOfClauseLabel = new System.Windows.Forms.Label();
             this.maxLengthOfClauseUpDown = new System.Windows.Forms.NumericUpDown();
             this.successLabel = new System.Windows.Forms.Label();
             this.generatorTypeLabel = new System.Windows.Forms.Label();
             this.generatorTypeComboBox = new System.Windows.Forms.ComboBox();
+            this.discreteRadioButton = new System.Windows.Forms.RadioButton();
+            this.continousRadioButton = new System.Windows.Forms.RadioButton();
+            this.discreteComboBox = new System.Windows.Forms.ComboBox();
+            this.continousComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.noOfVariableUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxLengthOfClauseUpDown)).BeginInit();
             this.SuspendLayout();
@@ -75,14 +79,14 @@ namespace Generator
             this.fileNameTextBox.TabIndex = 2;
             this.fileNameTextBox.Text = "outputFile";
             // 
-            // label1
+            // noOfVariablesLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 41);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Number of Variables";
+            this.noOfVariablesLabel.AutoSize = true;
+            this.noOfVariablesLabel.Location = new System.Drawing.Point(12, 41);
+            this.noOfVariablesLabel.Name = "noOfVariablesLabel";
+            this.noOfVariablesLabel.Size = new System.Drawing.Size(102, 13);
+            this.noOfVariablesLabel.TabIndex = 3;
+            this.noOfVariablesLabel.Text = "Number of Variables";
             // 
             // noOfVariableUpDown
             // 
@@ -91,14 +95,14 @@ namespace Generator
             this.noOfVariableUpDown.Size = new System.Drawing.Size(151, 20);
             this.noOfVariableUpDown.TabIndex = 4;
             // 
-            // label2
+            // maxLengthOfClauseLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 73);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(112, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Max Length Of Clause";
+            this.maxLengthOfClauseLabel.AutoSize = true;
+            this.maxLengthOfClauseLabel.Location = new System.Drawing.Point(12, 73);
+            this.maxLengthOfClauseLabel.Name = "maxLengthOfClauseLabel";
+            this.maxLengthOfClauseLabel.Size = new System.Drawing.Size(112, 13);
+            this.maxLengthOfClauseLabel.TabIndex = 5;
+            this.maxLengthOfClauseLabel.Text = "Max Length Of Clause";
             // 
             // maxLengthOfClauseUpDown
             // 
@@ -119,7 +123,7 @@ namespace Generator
             // generatorTypeLabel
             // 
             this.generatorTypeLabel.AutoSize = true;
-            this.generatorTypeLabel.Location = new System.Drawing.Point(342, 18);
+            this.generatorTypeLabel.Location = new System.Drawing.Point(342, 12);
             this.generatorTypeLabel.Name = "generatorTypeLabel";
             this.generatorTypeLabel.Size = new System.Drawing.Size(81, 13);
             this.generatorTypeLabel.TabIndex = 8;
@@ -127,26 +131,72 @@ namespace Generator
             // 
             // generatorTypeComboBox
             // 
-            this.generatorTypeComboBox.Location = new System.Drawing.Point(430, 18);
+            this.generatorTypeComboBox.Location = new System.Drawing.Point(430, 12);
             this.generatorTypeComboBox.Name = "generatorTypeComboBox";
             this.generatorTypeComboBox.Size = new System.Drawing.Size(198, 21);
             this.generatorTypeComboBox.TabIndex = 9;
-            this.generatorTypeComboBox.DataSource = Enum.GetValues(typeof(GeneratorTypeEnum));
-            //this.generatorTypeComboBox.SelectedIndex = (int)GeneratorTypeEnum.Standard;
             this.generatorTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.generatorTypeComboBox_SelectedIndexChanged);
+            // 
+            // discreteRadioButton
+            // 
+            this.discreteRadioButton.AutoSize = true;
+            this.discreteRadioButton.Location = new System.Drawing.Point(304, 41);
+            this.discreteRadioButton.Name = "discreteRadioButton";
+            this.discreteRadioButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.discreteRadioButton.Size = new System.Drawing.Size(119, 17);
+            this.discreteRadioButton.TabIndex = 10;
+            this.discreteRadioButton.TabStop = true;
+            this.discreteRadioButton.Text = "Discrete Distribution";
+            this.discreteRadioButton.UseVisualStyleBackColor = true;
+            this.discreteRadioButton.CheckedChanged += new System.EventHandler(this.discreteRadioButton_CheckedChanged);
+            // 
+            // continousRadioButton
+            // 
+            this.continousRadioButton.AutoSize = true;
+            this.continousRadioButton.Location = new System.Drawing.Point(296, 74);
+            this.continousRadioButton.Name = "continousRadioButton";
+            this.continousRadioButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.continousRadioButton.Size = new System.Drawing.Size(127, 17);
+            this.continousRadioButton.TabIndex = 11;
+            this.continousRadioButton.TabStop = true;
+            this.continousRadioButton.Text = "Continous Distribution";
+            this.continousRadioButton.UseVisualStyleBackColor = true;
+            this.continousRadioButton.CheckedChanged += new System.EventHandler(this.continousRadioButton_CheckedChanged);
+            // 
+            // discreteComboBox
+            // 
+            this.discreteComboBox.Enabled = false;
+            this.discreteComboBox.FormattingEnabled = true;
+            this.discreteComboBox.Location = new System.Drawing.Point(430, 41);
+            this.discreteComboBox.Name = "discreteComboBox";
+            this.discreteComboBox.Size = new System.Drawing.Size(198, 21);
+            this.discreteComboBox.TabIndex = 12;
+            // 
+            // continousComboBox
+            // 
+            this.continousComboBox.Enabled = false;
+            this.continousComboBox.FormattingEnabled = true;
+            this.continousComboBox.Location = new System.Drawing.Point(430, 71);
+            this.continousComboBox.Name = "continousComboBox";
+            this.continousComboBox.Size = new System.Drawing.Size(198, 21);
+            this.continousComboBox.TabIndex = 13;
             // 
             // Generator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(640, 479);
+            this.Controls.Add(this.continousComboBox);
+            this.Controls.Add(this.discreteComboBox);
+            this.Controls.Add(this.continousRadioButton);
+            this.Controls.Add(this.discreteRadioButton);
             this.Controls.Add(this.generatorTypeComboBox);
             this.Controls.Add(this.generatorTypeLabel);
             this.Controls.Add(this.successLabel);
             this.Controls.Add(this.maxLengthOfClauseUpDown);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.maxLengthOfClauseLabel);
             this.Controls.Add(this.noOfVariableUpDown);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.noOfVariablesLabel);
             this.Controls.Add(this.fileNameTextBox);
             this.Controls.Add(this.fileNameLabel);
             this.Controls.Add(this.generateButton);
@@ -165,13 +215,17 @@ namespace Generator
         private System.Windows.Forms.Button generateButton;
         private System.Windows.Forms.Label fileNameLabel;
         private System.Windows.Forms.TextBox fileNameTextBox;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label noOfVariablesLabel;
         private System.Windows.Forms.NumericUpDown noOfVariableUpDown;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label maxLengthOfClauseLabel;
         private System.Windows.Forms.NumericUpDown maxLengthOfClauseUpDown;
         private System.Windows.Forms.Label successLabel;
         private System.Windows.Forms.Label generatorTypeLabel;
         private System.Windows.Forms.ComboBox generatorTypeComboBox;
+        private System.Windows.Forms.RadioButton discreteRadioButton;
+        private System.Windows.Forms.RadioButton continousRadioButton;
+        private System.Windows.Forms.ComboBox discreteComboBox;
+        private System.Windows.Forms.ComboBox continousComboBox;
     }
 }
 

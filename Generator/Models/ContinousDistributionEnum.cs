@@ -1,12 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Generator.Models
+﻿namespace Generator.Models
 {
-    class ContinousDistributionEnum
+    public enum ContinousDistributionEnum
     {
+        BetaDistribution,
+        BetaPrimeDistribution,
+        CouchyDistribution,
+        ChiDistribution,
+        ChiSquareDistribution,
+        ContinousUniformDistribution,
+        ErlangDistribution,
+        ExponentialDistribution,
+        FisherSnedecorDistribution,
+        FisherTrippettDistribution,
+        GammaDistribution,
+        LaplaceDistribution,
+        LogisticDistribution,
+        LognormalDistribution,
+        NormalDistribution,
+        ParetoDistribution,
+        PowerDistribution,
+        RayleighDistribution,
+        StudentsTDistribution,
+        TriangularDistribution,
+        WeibullDistribution
     }
 }
