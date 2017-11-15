@@ -11,7 +11,7 @@ namespace Generator
         {
             using (var file = new StreamWriter(fileName))
             {
-                var problemLine = $"p {dimacs.NoOfVariables} {dimacs.NoOfClauses}";
+                var problemLine = $"p cnf {dimacs.NoOfVariables} {dimacs.NoOfClauses}";
                 var lines = dimacs.Clauses.Select(c => string.Join(" ", c) + " 0");
 
                 file.WriteLine(problemLine);                

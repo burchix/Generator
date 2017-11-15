@@ -43,10 +43,10 @@ namespace Generator
             for(int i = 0; i < noOfClauses; i++)
             {
                 var clause = new List<int>();
-                var clauseLength = maxLengthOfClause <= 0 ? rng.Next(100) : rng.Next(maxLengthOfClause);
+                var clauseLength = maxLengthOfClause <= 0 ? rng.Next(1, 100) : rng.Next(1, maxLengthOfClause + 1);
                 for (int j = 0; j < clauseLength; j ++)
                 {
-                    var variable = rng.Next(noOfVariables + 1);
+                    var variable = rng.Next(1, noOfVariables + 1);
                     clause.Add(variable);
                 }
                 clauses.Add(clause);

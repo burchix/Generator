@@ -91,9 +91,24 @@ namespace Generator
             // noOfVariableUpDown
             // 
             this.noOfVariableUpDown.Location = new System.Drawing.Point(130, 39);
+            this.noOfVariableUpDown.Maximum = new decimal(new int[] {
+            50000,
+            0,
+            0,
+            0});
+            this.noOfVariableUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.noOfVariableUpDown.Name = "noOfVariableUpDown";
             this.noOfVariableUpDown.Size = new System.Drawing.Size(151, 20);
             this.noOfVariableUpDown.TabIndex = 4;
+            this.noOfVariableUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // maxLengthOfClauseLabel
             // 
@@ -107,9 +122,19 @@ namespace Generator
             // maxLengthOfClauseUpDown
             // 
             this.maxLengthOfClauseUpDown.Location = new System.Drawing.Point(130, 71);
+            this.maxLengthOfClauseUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.maxLengthOfClauseUpDown.Name = "maxLengthOfClauseUpDown";
             this.maxLengthOfClauseUpDown.Size = new System.Drawing.Size(151, 20);
             this.maxLengthOfClauseUpDown.TabIndex = 6;
+            this.maxLengthOfClauseUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // successLabel
             // 
@@ -140,6 +165,7 @@ namespace Generator
             // discreteRadioButton
             // 
             this.discreteRadioButton.AutoSize = true;
+            this.discreteRadioButton.Checked = true;
             this.discreteRadioButton.Location = new System.Drawing.Point(304, 41);
             this.discreteRadioButton.Name = "discreteRadioButton";
             this.discreteRadioButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -158,14 +184,12 @@ namespace Generator
             this.continousRadioButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.continousRadioButton.Size = new System.Drawing.Size(127, 17);
             this.continousRadioButton.TabIndex = 11;
-            this.continousRadioButton.TabStop = true;
             this.continousRadioButton.Text = "Continous Distribution";
             this.continousRadioButton.UseVisualStyleBackColor = true;
             this.continousRadioButton.CheckedChanged += new System.EventHandler(this.continousRadioButton_CheckedChanged);
             // 
             // discreteComboBox
             // 
-            this.discreteComboBox.Enabled = false;
             this.discreteComboBox.FormattingEnabled = true;
             this.discreteComboBox.Location = new System.Drawing.Point(430, 41);
             this.discreteComboBox.Name = "discreteComboBox";
