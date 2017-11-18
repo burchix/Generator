@@ -160,7 +160,6 @@ namespace Generator
             this.generatorTypeComboBox.Name = "generatorTypeComboBox";
             this.generatorTypeComboBox.Size = new System.Drawing.Size(198, 21);
             this.generatorTypeComboBox.TabIndex = 9;
-            this.generatorTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.generatorTypeComboBox_SelectedIndexChanged);
             // 
             // discreteRadioButton
             // 

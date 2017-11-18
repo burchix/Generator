@@ -2,6 +2,9 @@
 using Generator.Models;
 using System;
 using System.Collections.Generic;
+using Troschuetz.Random.Distributions;
+using Troschuetz.Random.Distributions.Continuous;
+using Troschuetz.Random.Distributions.Discrete;
 using Troschuetz.Random.Generators;
 
 namespace Generator
@@ -9,11 +12,12 @@ namespace Generator
     class GeneratorImpl : IGeneratorImpl
     {
         private AbstractGenerator _generator;
-        private GeneratorTypeEnum _generatorType;
+        private AbstractDistribution _distribution;        
 
-        public GeneratorImpl(GeneratorTypeEnum generatorType)
+        public GeneratorImpl(GeneratorTypeEnum generatorType, ContinousDistributionEnum continousDistributionType, DiscreteDistributionEnum discreteDistributionType)
         {
-            _generatorType = generatorType;
+            _generator = getGenerator(generatorType);
+            _distribution = getDistribution(_generator, continousDistributionType, discreteDistributionType);
         } 
 
         public Dimacs generate()
@@ -39,14 +43,13 @@ namespace Generator
         List<List<int>> GenerateClauses(int noOfVariables, int noOfClauses, int maxLengthOfClause = 0)
         {
             var clauses = new List<List<int>>();
-            var rng = getGenerator(_generatorType);
             for(int i = 0; i < noOfClauses; i++)
             {
                 var clause = new List<int>();
-                var clauseLength = maxLengthOfClause <= 0 ? rng.Next(1, 100) : rng.Next(1, maxLengthOfClause + 1);
+                var clauseLength = maxLengthOfClause <= 0 ? -_generator.Next(1, 100) : _generator.Next(1, maxLengthOfClause + 1);
                 for (int j = 0; j < clauseLength; j ++)
                 {
-                    var variable = rng.Next(1, noOfVariables + 1);
+                    var variable = _generator.Next(1, noOfVariables + 1);
                     clause.Add(variable);
                 }
                 clauses.Add(clause);
@@ -67,6 +70,42 @@ namespace Generator
                 default:
                     return new StandardGenerator();
             }
+        }
+
+        private AbstractDistribution getDistribution(AbstractGenerator generator, ContinousDistributionEnum contiousDistributionType, DiscreteDistributionEnum discreteDistributionType)
+        {
+            return contiousDistributionType == ContinousDistributionEnum.Unknown 
+                ? getDiscreteDistribution(generator, discreteDistributionType) 
+                : getContinousDistribution(generator, contiousDistributionType);
+        }
+
+        private AbstractDistribution getContinousDistribution(AbstractGenerator generator, ContinousDistributionEnum distributionType)
+        {
+            switch (distributionType)
+            {
+                case ContinousDistributionEnum.BetaDistribution:
+                    return new BetaDistribution(generator);
+                case ContinousDistributionEnum.BetaPrimeDistribution:
+                    return new BetaPrimeDistribution(generator);
+                case ContinousDistributionEnum.ChiDistribution:
+                    return new ChiDistribution(generator);
+                case ContinousDistributionEnum.ChiSquareDistribution:
+                    return new ChiSquareDistribution(generator);
+
+                    
+            }
+            throw new NotImplementedException();
+        }
+
+        private AbstractDistribution getDiscreteDistribution(AbstractGenerator generator, DiscreteDistributionEnum distributionType)
+        {
+            switch(distributionType)
+            {
+                case DiscreteDistributionEnum.BernoulliDistribution:
+                    return new BernoulliDistribution(generator);
+                    
+            }
+            throw new NotImplementedException();
         }
     }
 }

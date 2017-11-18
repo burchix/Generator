@@ -2,6 +2,7 @@
 {
     public enum ContinousDistributionEnum
     {
+        Unknown = -1,
         BetaDistribution,
         BetaPrimeDistribution,
         CouchyDistribution,

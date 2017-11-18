@@ -1,4 +1,4 @@
-﻿using Generator.Interafces;
+﻿using Generator.Interfaces;
 using Generator.Models;
 using System.IO;
 using System.Linq;

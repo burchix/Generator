@@ -1,6 +1,6 @@
 ﻿using Generator.Models;
 
-namespace Generator.Interafces
+namespace Generator.Interfaces
 {
     interface IDimacsWriter
     {
