@@ -4,11 +4,8 @@
     {
         Unknown = -1,
         BetaDistribution,
-        BetaPrimeDistribution,
-        CouchyDistribution,
-        ChiDistribution,
+        CauchyDistribution,
         ChiSquareDistribution,
-        ContinousUniformDistribution,
         ErlangDistribution,
         ExponentialDistribution,
         FisherSnedecorDistribution,
@@ -19,10 +16,8 @@
         LognormalDistribution,
         NormalDistribution,
         ParetoDistribution,
-        PowerDistribution,
         RayleighDistribution,
         StudentsTDistribution,
-        TriangularDistribution,
         WeibullDistribution
     }
 }

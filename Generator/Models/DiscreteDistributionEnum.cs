@@ -4,7 +4,6 @@
     {
         Unknown = -1,
         BinomialDistribution,
-        BernoulliDistribution,
         CategoricalDistribution,
         DiscreteUniformDistribution,
         GeometricDistribution,

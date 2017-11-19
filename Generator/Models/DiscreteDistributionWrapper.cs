@@ -18,7 +18,7 @@ namespace Generator.Models
             var oldMax = _distribution.Maximum > Double.MaxValue / 2
                 ? Double.MaxValue / 2
                 : _distribution.Maximum;
-            var oldMin = _distribution.Minimum > Double.MinValue / 2
+            var oldMin = _distribution.Minimum < Double.MinValue / 2
                 ? Double.MinValue / 2
                 : _distribution.Minimum;
             var originalResult = _distribution.Next();

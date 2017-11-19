@@ -1,10 +1,9 @@
 ﻿using Generator.Models;
 
-namespace Generator.Interafces
+namespace Generator.Interfaces
 {
     interface IGeneratorImpl
     {
-        Dimacs generate();
-        Dimacs generate(int noOfVariables, int maxLength);
+        Dimacs generate(int noOfVariables, int noOfClauses, int maxLengthOfClause);
     }
 }

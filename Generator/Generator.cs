@@ -41,12 +41,15 @@ namespace Generator
                 ? (ContinousDistributionEnum)continousComboBox.SelectedItem 
                 : ContinousDistributionEnum.Unknown;
             var generatorImpl = new GeneratorImpl(generatorType, continousType, discreteType);
+
             var fileName = fileNameTextBox.Text;
             var noOfVariables = (int)noOfVariableUpDown.Value;
             var maxLength = (int)maxLengthOfClauseUpDown.Value;
-            var dimacs = generatorImpl.generate(noOfVariables, maxLength);
+            var noOfClauses = (int)noOfClausesNumericUpDown.Value;
+            var dimacs = generatorImpl.generate(noOfVariables, noOfClauses, maxLength);
             var result = _dimacsWriter.CreateDimacsFile(dimacs, fileName);
-            successLabel.Text = result.ToString();
+            var message = result ? "Your dimacs was succesfully generated" : "There was a problem during generation of your dimacs";
+            MessageBox.Show(message);
         }
 
         private void discreteRadioButton_CheckedChanged(object sender, EventArgs e)
