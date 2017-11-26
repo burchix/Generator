@@ -40,8 +40,9 @@ namespace Generator
                 var clauseLength = random.Next(1, maxLengthOfClause + 1);
                 for (int j = 0; j < clauseLength; j ++)
                 {
+                    var factor = random.NextDouble() > 0.5 ? 1 : -1;
                     var variable = _distribution.NextRandom(1, noOfVariables + 1);
-                    clause.Add(variable);
+                    clause.Add(variable * factor);
                 }
                 clauses.Add(clause);
             }
