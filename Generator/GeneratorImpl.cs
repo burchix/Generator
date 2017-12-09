@@ -138,10 +138,10 @@ namespace Generator
             switch(distributionType)
             {
                 case DiscreteDistributionEnum.BinomialDistribution:
-                    distribution = new BernoulliDistribution(generator);
+                    distribution = new BinomialDistribution(generator);
                     break;
                 case DiscreteDistributionEnum.CategoricalDistribution:
-                    distribution = new CategoricalDistribution(generator);
+                    distribution = new CategoricalDistribution(generator, 50000);
                     break;
                 case DiscreteDistributionEnum.DiscreteUniformDistribution:
                     distribution = new DiscreteUniformDistribution(generator, 1, 50000);
