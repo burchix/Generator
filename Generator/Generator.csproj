@@ -55,13 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\IContinousDistributionWrapper.cs" />
-    <Compile Include="Interfaces\IDiscreteDistributionWrapper.cs" />
-    <Compile Include="Interfaces\IUniversalDistribution.cs" />
-    <Compile Include="Models\ContinousDistributionEnum.cs" />
-    <Compile Include="Models\ContinousDistributionWrapper.cs" />
     <Compile Include="Models\Dimacs.cs" />
-    <Compile Include="DimacsWriter.cs" />
     <Compile Include="Generator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,10 +63,7 @@
       <DependentUpon>Generator.cs</DependentUpon>
     </Compile>
     <Compile Include="GeneratorImpl.cs" />
-    <Compile Include="Interfaces\IDimacsWriter.cs" />
     <Compile Include="Interfaces\IGeneratorImpl.cs" />
-    <Compile Include="Models\DiscreteDistributionEnum.cs" />
-    <Compile Include="Models\DiscreteDistributionWrapper.cs" />
     <Compile Include="Models\GeneratorTypeEnum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,23 +1,20 @@
-﻿using Generator.Interfaces;
+﻿
+using Generator.Interfaces;
 using Generator.Models;
 using System;
 using System.Collections.Generic;
-using Troschuetz.Random;
-using Troschuetz.Random.Distributions.Continuous;
-using Troschuetz.Random.Distributions.Discrete;
+using System.IO;
 using Troschuetz.Random.Generators;
 
 namespace Generator
 {
     class GeneratorImpl : IGeneratorImpl
     {
-        private AbstractGenerator _generator;
-        private IUniversalDistribution _distribution;        
+        private AbstractGenerator _generator;      
 
-        public GeneratorImpl(GeneratorTypeEnum generatorType, ContinousDistributionEnum continousDistributionType, DiscreteDistributionEnum discreteDistributionType)
+        public GeneratorImpl(GeneratorTypeEnum generatorType)
         {
             _generator = getGenerator(generatorType);
-            _distribution = getDistribution(_generator, continousDistributionType, discreteDistributionType);
         }
 
         public Dimacs generate(int noOfVariables = 0, int noOfClauses = 0, int maxLengthOfClause = 100)
@@ -27,7 +24,20 @@ namespace Generator
             dimacs.NoOfVariables = noOfVariables > 0 ? noOfVariables : rng.Next(1, 50001);
             dimacs.NoOfClauses = noOfClauses > 0 ? noOfClauses : rng.Next(1, 750000);
             dimacs.Clauses = GenerateClauses(dimacs.NoOfVariables, dimacs.NoOfClauses, maxLengthOfClause);
+            WriteFormula(dimacs, "filename");
             return dimacs;
+        }
+
+        private void WriteFormula(Dimacs dimacs, string fileName)
+        {
+            using (var file = new StreamWriter(fileName))
+            {
+                WrtiteFirstLine(file, dimacs.NoOfClauses, dimacs.NoOfVariables);
+                dimacs.Clauses.ForEach(c =>
+                {
+                    WriteClause(file, c);
+                });
+            }
         }
 
         List<List<int>> GenerateClauses(int noOfVariables, int noOfClauses, int maxLengthOfClause)
@@ -41,7 +51,7 @@ namespace Generator
                 for (int j = 0; j < clauseLength; j ++)
                 {
                     var factor = random.NextDouble() > 0.5 ? 1 : -1;
-                    var variable = _distribution.NextRandom(1, noOfVariables + 1);
+                    var variable = _generator.Next(1, noOfVariables + 1);
                     clause.Add(variable * factor);
                 }
                 clauses.Add(clause);
@@ -64,100 +74,18 @@ namespace Generator
             }
         }
 
-        private IUniversalDistribution getDistribution(AbstractGenerator generator, ContinousDistributionEnum contiousDistributionType, DiscreteDistributionEnum discreteDistributionType)
+        public bool WrtiteFirstLine(StreamWriter file, int noOfClauses, int noOfVariables)
         {
-            return contiousDistributionType == ContinousDistributionEnum.Unknown 
-                ? getDiscreteDistribution(generator, discreteDistributionType)
-                : getContinousDistribution(generator, contiousDistributionType);
+            var problemLine = $"p cnf {noOfVariables} {noOfClauses}";
+            file.WriteLine(problemLine);
+            return true;
         }
 
-        private IUniversalDistribution getContinousDistribution(AbstractGenerator generator, ContinousDistributionEnum distributionType)
+        public bool WriteClause(StreamWriter file, List<int> clause)
         {
-            IContinuousDistribution distribution;
-            switch (distributionType)
-            {
-                case ContinousDistributionEnum.BetaDistribution:
-                    distribution = new BetaDistribution(generator);
-                    break;
-                case ContinousDistributionEnum.ChiSquareDistribution:
-                    distribution = new ChiSquareDistribution(generator);
-                    break;
-                case ContinousDistributionEnum.CauchyDistribution:
-                    distribution = new CauchyDistribution(generator);
-                    break;
-                case ContinousDistributionEnum.ErlangDistribution:
-                    distribution = new ErlangDistribution(generator);
-                    break;
-                case ContinousDistributionEnum.ExponentialDistribution:
-                    distribution = new ExponentialDistribution(generator);
-                    break;
-                case ContinousDistributionEnum.FisherSnedecorDistribution:
-                    distribution = new FisherSnedecorDistribution(generator);
-                    break;
-                case ContinousDistributionEnum.FisherTrippettDistribution:
-                    distribution = new FisherTippettDistribution(generator);
-                    break;
-                case ContinousDistributionEnum.GammaDistribution:
-                    distribution = new GammaDistribution(generator);
-                    break;
-                case ContinousDistributionEnum.LaplaceDistribution:
-                    distribution = new LaplaceDistribution(generator);
-                    break;
-                case ContinousDistributionEnum.LogisticDistribution:
-                    distribution = new LogisticDistribution(generator);
-                    break;
-                case ContinousDistributionEnum.LognormalDistribution:
-                    distribution = new LognormalDistribution(generator);
-                    break;
-                case ContinousDistributionEnum.NormalDistribution:
-                    distribution = new NormalDistribution(generator);
-                    break;
-                case ContinousDistributionEnum.ParetoDistribution:
-                    distribution = new ParetoDistribution(generator);
-                    break;
-                case ContinousDistributionEnum.RayleighDistribution:
-                    distribution = new RayleighDistribution(generator);
-                    break;
-                case ContinousDistributionEnum.StudentsTDistribution:
-                    distribution = new StudentsTDistribution(generator);
-                    break;
-                case ContinousDistributionEnum.WeibullDistribution:
-                    distribution = new WeibullDistribution(generator);
-                    break;
-                default:
-                    distribution = new NormalDistribution(generator);
-                    break;
-                    
-            }
-            return new ContinousDistributionWrapper(distribution);
-        }
-
-        private IUniversalDistribution getDiscreteDistribution(AbstractGenerator generator, DiscreteDistributionEnum distributionType)
-        {
-            IDiscreteDistribution distribution;
-            switch(distributionType)
-            {
-                case DiscreteDistributionEnum.BinomialDistribution:
-                    distribution = new BernoulliDistribution(generator);
-                    break;
-                case DiscreteDistributionEnum.CategoricalDistribution:
-                    distribution = new CategoricalDistribution(generator);
-                    break;
-                case DiscreteDistributionEnum.DiscreteUniformDistribution:
-                    distribution = new DiscreteUniformDistribution(generator, 1, 50000);
-                    break;
-                case DiscreteDistributionEnum.GeometricDistribution:
-                    distribution = new GeometricDistribution(generator);
-                    break;
-                case DiscreteDistributionEnum.PoissonDistribution:
-                    distribution = new PoissonDistribution(generator);
-                    break;
-                default:
-                    distribution = new DiscreteUniformDistribution(generator);
-                    break;
-                    
-            }
-            return new DiscreteDistributionWrapper(distribution);
+            var line = string.Join(" ", clause) + " 0";
+            file.WriteLine(line);
+            return true;
         }
     }
 }

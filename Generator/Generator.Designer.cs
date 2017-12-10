@@ -36,20 +36,41 @@ namespace Generator
             this.fileNameTextBox = new System.Windows.Forms.TextBox();
             this.noOfVariablesLabel = new System.Windows.Forms.Label();
             this.noOfVariableUpDown = new System.Windows.Forms.NumericUpDown();
-            this.maxLengthOfClauseLabel = new System.Windows.Forms.Label();
-            this.maxLengthOfClauseUpDown = new System.Windows.Forms.NumericUpDown();
+            this.maxLengthClauseUpDown = new System.Windows.Forms.NumericUpDown();
             this.successLabel = new System.Windows.Forms.Label();
             this.generatorTypeLabel = new System.Windows.Forms.Label();
             this.generatorTypeComboBox = new System.Windows.Forms.ComboBox();
-            this.discreteRadioButton = new System.Windows.Forms.RadioButton();
-            this.continousRadioButton = new System.Windows.Forms.RadioButton();
-            this.discreteComboBox = new System.Windows.Forms.ComboBox();
-            this.continousComboBox = new System.Windows.Forms.ComboBox();
-            this.noOfClausesLabel = new System.Windows.Forms.Label();
-            this.noOfClausesNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.fixedNoClausesUpDown = new System.Windows.Forms.NumericUpDown();
+            this.lengthGroupBox = new System.Windows.Forms.GroupBox();
+            this.fixedLengthClauseUpDown = new System.Windows.Forms.NumericUpDown();
+            this.avgLengthClauseUpDown = new System.Windows.Forms.NumericUpDown();
+            this.fixedLengthClauseRadioButton = new System.Windows.Forms.RadioButton();
+            this.avgLengthClauseRadioButton = new System.Windows.Forms.RadioButton();
+            this.maxLengthClauseRadioButton = new System.Windows.Forms.RadioButton();
+            this.numberGroupBox = new System.Windows.Forms.GroupBox();
+            this.relativeNoClausesUpDown = new System.Windows.Forms.NumericUpDown();
+            this.maxNoClausesUpDown = new System.Windows.Forms.NumericUpDown();
+            this.fixedNoClausesRadioButton = new System.Windows.Forms.RadioButton();
+            this.relativeNoClausesRadioButton = new System.Windows.Forms.RadioButton();
+            this.maxNoClausesRadioButton = new System.Windows.Forms.RadioButton();
+            this.noClausesTrackBar = new System.Windows.Forms.TrackBar();
+            this.extraGroupBox = new System.Windows.Forms.GroupBox();
+            this.repetitionsLabel = new System.Windows.Forms.Label();
+            this.repetitionsUpDown = new System.Windows.Forms.NumericUpDown();
+            this.basicGroupBox = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.noOfVariableUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maxLengthOfClauseUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.noOfClausesNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maxLengthClauseUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fixedNoClausesUpDown)).BeginInit();
+            this.lengthGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fixedLengthClauseUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.avgLengthClauseUpDown)).BeginInit();
+            this.numberGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.relativeNoClausesUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maxNoClausesUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.noClausesTrackBar)).BeginInit();
+            this.extraGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.repetitionsUpDown)).BeginInit();
+            this.basicGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // generateButton
@@ -58,10 +79,10 @@ namespace Generator
             this.generateButton.BackColor = System.Drawing.Color.DarkRed;
             this.generateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.generateButton.ForeColor = System.Drawing.Color.Cornsilk;
-            this.generateButton.Location = new System.Drawing.Point(787, 218);
+            this.generateButton.Location = new System.Drawing.Point(640, 330);
             this.generateButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.generateButton.Name = "generateButton";
-            this.generateButton.Size = new System.Drawing.Size(160, 97);
+            this.generateButton.Size = new System.Drawing.Size(118, 59);
             this.generateButton.TabIndex = 0;
             this.generateButton.Text = "GENERATE";
             this.generateButton.UseVisualStyleBackColor = false;
@@ -69,8 +90,10 @@ namespace Generator
             // 
             // fileNameLabel
             // 
+            this.fileNameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.fileNameLabel.AutoSize = true;
-            this.fileNameLabel.Location = new System.Drawing.Point(20, 10);
+            this.fileNameLabel.Location = new System.Drawing.Point(7, 25);
             this.fileNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.fileNameLabel.Name = "fileNameLabel";
             this.fileNameLabel.Size = new System.Drawing.Size(88, 20);
@@ -79,17 +102,21 @@ namespace Generator
             // 
             // fileNameTextBox
             // 
-            this.fileNameTextBox.Location = new System.Drawing.Point(195, 10);
+            this.fileNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fileNameTextBox.Location = new System.Drawing.Point(168, 22);
             this.fileNameTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.fileNameTextBox.Name = "fileNameTextBox";
-            this.fileNameTextBox.Size = new System.Drawing.Size(224, 26);
+            this.fileNameTextBox.Size = new System.Drawing.Size(230, 26);
             this.fileNameTextBox.TabIndex = 2;
             this.fileNameTextBox.Text = "outputFile";
             // 
             // noOfVariablesLabel
             // 
+            this.noOfVariablesLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.noOfVariablesLabel.AutoSize = true;
-            this.noOfVariablesLabel.Location = new System.Drawing.Point(20, 50);
+            this.noOfVariablesLabel.Location = new System.Drawing.Point(7, 60);
             this.noOfVariablesLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.noOfVariablesLabel.Name = "noOfVariablesLabel";
             this.noOfVariablesLabel.Size = new System.Drawing.Size(153, 20);
@@ -98,7 +125,9 @@ namespace Generator
             // 
             // noOfVariableUpDown
             // 
-            this.noOfVariableUpDown.Location = new System.Drawing.Point(195, 50);
+            this.noOfVariableUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.noOfVariableUpDown.Location = new System.Drawing.Point(168, 58);
             this.noOfVariableUpDown.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.noOfVariableUpDown.Maximum = new decimal(new int[] {
             50000,
@@ -106,26 +135,23 @@ namespace Generator
             0,
             0});
             this.noOfVariableUpDown.Name = "noOfVariableUpDown";
-            this.noOfVariableUpDown.Size = new System.Drawing.Size(226, 26);
+            this.noOfVariableUpDown.Size = new System.Drawing.Size(230, 26);
             this.noOfVariableUpDown.TabIndex = 4;
             // 
-            // maxLengthOfClauseLabel
+            // maxLengthClauseUpDown
             // 
-            this.maxLengthOfClauseLabel.AutoSize = true;
-            this.maxLengthOfClauseLabel.Location = new System.Drawing.Point(20, 90);
-            this.maxLengthOfClauseLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.maxLengthOfClauseLabel.Name = "maxLengthOfClauseLabel";
-            this.maxLengthOfClauseLabel.Size = new System.Drawing.Size(166, 20);
-            this.maxLengthOfClauseLabel.TabIndex = 5;
-            this.maxLengthOfClauseLabel.Text = "Max Length Of Clause";
-            // 
-            // maxLengthOfClauseUpDown
-            // 
-            this.maxLengthOfClauseUpDown.Location = new System.Drawing.Point(195, 90);
-            this.maxLengthOfClauseUpDown.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.maxLengthOfClauseUpDown.Name = "maxLengthOfClauseUpDown";
-            this.maxLengthOfClauseUpDown.Size = new System.Drawing.Size(226, 26);
-            this.maxLengthOfClauseUpDown.TabIndex = 6;
+            this.maxLengthClauseUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.maxLengthClauseUpDown.Location = new System.Drawing.Point(511, 27);
+            this.maxLengthClauseUpDown.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.maxLengthClauseUpDown.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.maxLengthClauseUpDown.Name = "maxLengthClauseUpDown";
+            this.maxLengthClauseUpDown.Size = new System.Drawing.Size(226, 26);
+            this.maxLengthClauseUpDown.TabIndex = 6;
             // 
             // successLabel
             // 
@@ -139,8 +165,10 @@ namespace Generator
             // 
             // generatorTypeLabel
             // 
+            this.generatorTypeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.generatorTypeLabel.AutoSize = true;
-            this.generatorTypeLabel.Location = new System.Drawing.Point(522, 10);
+            this.generatorTypeLabel.Location = new System.Drawing.Point(7, 25);
             this.generatorTypeLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.generatorTypeLabel.Name = "generatorTypeLabel";
             this.generatorTypeLabel.Size = new System.Drawing.Size(120, 20);
@@ -149,108 +177,337 @@ namespace Generator
             // 
             // generatorTypeComboBox
             // 
-            this.generatorTypeComboBox.Location = new System.Drawing.Point(650, 10);
+            this.generatorTypeComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.generatorTypeComboBox.Location = new System.Drawing.Point(179, 22);
             this.generatorTypeComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.generatorTypeComboBox.Name = "generatorTypeComboBox";
-            this.generatorTypeComboBox.Size = new System.Drawing.Size(295, 28);
+            this.generatorTypeComboBox.Size = new System.Drawing.Size(147, 28);
             this.generatorTypeComboBox.TabIndex = 9;
             // 
-            // discreteRadioButton
+            // fixedNoClausesUpDown
             // 
-            this.discreteRadioButton.AutoSize = true;
-            this.discreteRadioButton.Checked = true;
-            this.discreteRadioButton.Location = new System.Drawing.Point(465, 50);
-            this.discreteRadioButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.discreteRadioButton.Name = "discreteRadioButton";
-            this.discreteRadioButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.discreteRadioButton.Size = new System.Drawing.Size(177, 24);
-            this.discreteRadioButton.TabIndex = 10;
-            this.discreteRadioButton.TabStop = true;
-            this.discreteRadioButton.Text = "Discrete Distribution";
-            this.discreteRadioButton.UseVisualStyleBackColor = true;
-            this.discreteRadioButton.CheckedChanged += new System.EventHandler(this.discreteRadioButton_CheckedChanged);
-            // 
-            // continousRadioButton
-            // 
-            this.continousRadioButton.AutoSize = true;
-            this.continousRadioButton.Location = new System.Drawing.Point(452, 90);
-            this.continousRadioButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.continousRadioButton.Name = "continousRadioButton";
-            this.continousRadioButton.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.continousRadioButton.Size = new System.Drawing.Size(190, 24);
-            this.continousRadioButton.TabIndex = 11;
-            this.continousRadioButton.Text = "Continous Distribution";
-            this.continousRadioButton.UseVisualStyleBackColor = true;
-            this.continousRadioButton.CheckedChanged += new System.EventHandler(this.continousRadioButton_CheckedChanged);
-            // 
-            // discreteComboBox
-            // 
-            this.discreteComboBox.FormattingEnabled = true;
-            this.discreteComboBox.Location = new System.Drawing.Point(650, 50);
-            this.discreteComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.discreteComboBox.Name = "discreteComboBox";
-            this.discreteComboBox.Size = new System.Drawing.Size(295, 28);
-            this.discreteComboBox.TabIndex = 12;
-            // 
-            // continousComboBox
-            // 
-            this.continousComboBox.Enabled = false;
-            this.continousComboBox.FormattingEnabled = true;
-            this.continousComboBox.Location = new System.Drawing.Point(650, 90);
-            this.continousComboBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.continousComboBox.Name = "continousComboBox";
-            this.continousComboBox.Size = new System.Drawing.Size(295, 28);
-            this.continousComboBox.TabIndex = 13;
-            // 
-            // noOfClausesLabel
-            // 
-            this.noOfClausesLabel.AutoSize = true;
-            this.noOfClausesLabel.Location = new System.Drawing.Point(20, 130);
-            this.noOfClausesLabel.Name = "noOfClausesLabel";
-            this.noOfClausesLabel.Size = new System.Drawing.Size(144, 20);
-            this.noOfClausesLabel.TabIndex = 14;
-            this.noOfClausesLabel.Text = "Number of Clauses";
-            // 
-            // noOfClausesNumericUpDown
-            // 
-            this.noOfClausesNumericUpDown.Location = new System.Drawing.Point(195, 130);
-            this.noOfClausesNumericUpDown.Maximum = new decimal(new int[] {
+            this.fixedNoClausesUpDown.Location = new System.Drawing.Point(511, 25);
+            this.fixedNoClausesUpDown.Maximum = new decimal(new int[] {
             750000,
             0,
             0,
             0});
-            this.noOfClausesNumericUpDown.Name = "noOfClausesNumericUpDown";
-            this.noOfClausesNumericUpDown.Size = new System.Drawing.Size(224, 26);
-            this.noOfClausesNumericUpDown.TabIndex = 15;
+            this.fixedNoClausesUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.fixedNoClausesUpDown.Name = "fixedNoClausesUpDown";
+            this.fixedNoClausesUpDown.Size = new System.Drawing.Size(226, 26);
+            this.fixedNoClausesUpDown.TabIndex = 15;
+            this.fixedNoClausesUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.fixedNoClausesUpDown.Visible = false;
+            // 
+            // lengthGroupBox
+            // 
+            this.lengthGroupBox.Controls.Add(this.fixedLengthClauseUpDown);
+            this.lengthGroupBox.Controls.Add(this.avgLengthClauseUpDown);
+            this.lengthGroupBox.Controls.Add(this.fixedLengthClauseRadioButton);
+            this.lengthGroupBox.Controls.Add(this.avgLengthClauseRadioButton);
+            this.lengthGroupBox.Controls.Add(this.maxLengthClauseRadioButton);
+            this.lengthGroupBox.Controls.Add(this.maxLengthClauseUpDown);
+            this.lengthGroupBox.Location = new System.Drawing.Point(12, 252);
+            this.lengthGroupBox.Name = "lengthGroupBox";
+            this.lengthGroupBox.Size = new System.Drawing.Size(744, 69);
+            this.lengthGroupBox.TabIndex = 17;
+            this.lengthGroupBox.TabStop = false;
+            this.lengthGroupBox.Text = "Length of Clause Settings";
+            // 
+            // fixedLengthClauseUpDown
+            // 
+            this.fixedLengthClauseUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.fixedLengthClauseUpDown.Location = new System.Drawing.Point(511, 27);
+            this.fixedLengthClauseUpDown.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.fixedLengthClauseUpDown.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.fixedLengthClauseUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.fixedLengthClauseUpDown.Name = "fixedLengthClauseUpDown";
+            this.fixedLengthClauseUpDown.Size = new System.Drawing.Size(226, 26);
+            this.fixedLengthClauseUpDown.TabIndex = 11;
+            this.fixedLengthClauseUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.fixedLengthClauseUpDown.Visible = false;
+            // 
+            // avgLengthClauseUpDown
+            // 
+            this.avgLengthClauseUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.avgLengthClauseUpDown.Location = new System.Drawing.Point(511, 27);
+            this.avgLengthClauseUpDown.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.avgLengthClauseUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.avgLengthClauseUpDown.Name = "avgLengthClauseUpDown";
+            this.avgLengthClauseUpDown.Size = new System.Drawing.Size(226, 26);
+            this.avgLengthClauseUpDown.TabIndex = 10;
+            this.avgLengthClauseUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.avgLengthClauseUpDown.Visible = false;
+            // 
+            // fixedLengthClauseRadioButton
+            // 
+            this.fixedLengthClauseRadioButton.AutoSize = true;
+            this.fixedLengthClauseRadioButton.Location = new System.Drawing.Point(11, 29);
+            this.fixedLengthClauseRadioButton.Name = "fixedLengthClauseRadioButton";
+            this.fixedLengthClauseRadioButton.Size = new System.Drawing.Size(72, 24);
+            this.fixedLengthClauseRadioButton.TabIndex = 9;
+            this.fixedLengthClauseRadioButton.Text = "Fixed";
+            this.fixedLengthClauseRadioButton.UseVisualStyleBackColor = true;
+            this.fixedLengthClauseRadioButton.CheckedChanged += new System.EventHandler(this.fixedLengthClauseRadioButton_CheckedChanged);
+            // 
+            // avgLengthClauseRadioButton
+            // 
+            this.avgLengthClauseRadioButton.AutoSize = true;
+            this.avgLengthClauseRadioButton.Location = new System.Drawing.Point(272, 29);
+            this.avgLengthClauseRadioButton.Name = "avgLengthClauseRadioButton";
+            this.avgLengthClauseRadioButton.Size = new System.Drawing.Size(93, 24);
+            this.avgLengthClauseRadioButton.TabIndex = 8;
+            this.avgLengthClauseRadioButton.Text = "Average";
+            this.avgLengthClauseRadioButton.UseVisualStyleBackColor = true;
+            this.avgLengthClauseRadioButton.CheckedChanged += new System.EventHandler(this.avgLengthClauseRadioButton_CheckedChanged);
+            // 
+            // maxLengthClauseRadioButton
+            // 
+            this.maxLengthClauseRadioButton.AutoSize = true;
+            this.maxLengthClauseRadioButton.Checked = true;
+            this.maxLengthClauseRadioButton.Location = new System.Drawing.Point(151, 29);
+            this.maxLengthClauseRadioButton.Name = "maxLengthClauseRadioButton";
+            this.maxLengthClauseRadioButton.Size = new System.Drawing.Size(63, 24);
+            this.maxLengthClauseRadioButton.TabIndex = 7;
+            this.maxLengthClauseRadioButton.TabStop = true;
+            this.maxLengthClauseRadioButton.Text = "Max";
+            this.maxLengthClauseRadioButton.UseVisualStyleBackColor = true;
+            this.maxLengthClauseRadioButton.CheckedChanged += new System.EventHandler(this.maxlengthClauseRadioButton_CheckedChanged);
+            // 
+            // numberGroupBox
+            // 
+            this.numberGroupBox.Controls.Add(this.relativeNoClausesUpDown);
+            this.numberGroupBox.Controls.Add(this.maxNoClausesUpDown);
+            this.numberGroupBox.Controls.Add(this.fixedNoClausesRadioButton);
+            this.numberGroupBox.Controls.Add(this.relativeNoClausesRadioButton);
+            this.numberGroupBox.Controls.Add(this.maxNoClausesRadioButton);
+            this.numberGroupBox.Controls.Add(this.noClausesTrackBar);
+            this.numberGroupBox.Controls.Add(this.fixedNoClausesUpDown);
+            this.numberGroupBox.Location = new System.Drawing.Point(12, 113);
+            this.numberGroupBox.Name = "numberGroupBox";
+            this.numberGroupBox.Size = new System.Drawing.Size(744, 133);
+            this.numberGroupBox.TabIndex = 18;
+            this.numberGroupBox.TabStop = false;
+            this.numberGroupBox.Text = "Number of Clauses Settings";
+            // 
+            // relativeNoClausesUpDown
+            // 
+            this.relativeNoClausesUpDown.DecimalPlaces = 2;
+            this.relativeNoClausesUpDown.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.relativeNoClausesUpDown.Location = new System.Drawing.Point(511, 25);
+            this.relativeNoClausesUpDown.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
+            this.relativeNoClausesUpDown.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.relativeNoClausesUpDown.Name = "relativeNoClausesUpDown";
+            this.relativeNoClausesUpDown.Size = new System.Drawing.Size(226, 26);
+            this.relativeNoClausesUpDown.TabIndex = 20;
+            this.relativeNoClausesUpDown.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.relativeNoClausesUpDown.Visible = false;
+            this.relativeNoClausesUpDown.ValueChanged += new System.EventHandler(this.relativeNoClausesUpDown_ValueChanged);
+            // 
+            // maxNoClausesUpDown
+            // 
+            this.maxNoClausesUpDown.Location = new System.Drawing.Point(511, 25);
+            this.maxNoClausesUpDown.Maximum = new decimal(new int[] {
+            750000,
+            0,
+            0,
+            0});
+            this.maxNoClausesUpDown.Name = "maxNoClausesUpDown";
+            this.maxNoClausesUpDown.Size = new System.Drawing.Size(226, 26);
+            this.maxNoClausesUpDown.TabIndex = 19;
+            // 
+            // fixedNoClausesRadioButton
+            // 
+            this.fixedNoClausesRadioButton.AutoSize = true;
+            this.fixedNoClausesRadioButton.Location = new System.Drawing.Point(11, 25);
+            this.fixedNoClausesRadioButton.Name = "fixedNoClausesRadioButton";
+            this.fixedNoClausesRadioButton.Size = new System.Drawing.Size(72, 24);
+            this.fixedNoClausesRadioButton.TabIndex = 18;
+            this.fixedNoClausesRadioButton.Text = "Fixed";
+            this.fixedNoClausesRadioButton.UseVisualStyleBackColor = true;
+            this.fixedNoClausesRadioButton.CheckedChanged += new System.EventHandler(this.fixedNoClausesRadioButton_CheckedChanged);
+            // 
+            // relativeNoClausesRadioButton
+            // 
+            this.relativeNoClausesRadioButton.AutoSize = true;
+            this.relativeNoClausesRadioButton.Location = new System.Drawing.Point(272, 25);
+            this.relativeNoClausesRadioButton.Name = "relativeNoClausesRadioButton";
+            this.relativeNoClausesRadioButton.Size = new System.Drawing.Size(91, 24);
+            this.relativeNoClausesRadioButton.TabIndex = 17;
+            this.relativeNoClausesRadioButton.Text = "Relative";
+            this.relativeNoClausesRadioButton.UseVisualStyleBackColor = true;
+            this.relativeNoClausesRadioButton.CheckedChanged += new System.EventHandler(this.relativeNoClausesRadioButton_CheckedChanged);
+            // 
+            // maxNoClausesRadioButton
+            // 
+            this.maxNoClausesRadioButton.AutoSize = true;
+            this.maxNoClausesRadioButton.Checked = true;
+            this.maxNoClausesRadioButton.Location = new System.Drawing.Point(151, 25);
+            this.maxNoClausesRadioButton.Name = "maxNoClausesRadioButton";
+            this.maxNoClausesRadioButton.Size = new System.Drawing.Size(63, 24);
+            this.maxNoClausesRadioButton.TabIndex = 16;
+            this.maxNoClausesRadioButton.TabStop = true;
+            this.maxNoClausesRadioButton.Text = "Max";
+            this.maxNoClausesRadioButton.UseVisualStyleBackColor = true;
+            this.maxNoClausesRadioButton.CheckedChanged += new System.EventHandler(this.maxNoClausesRadioButton_CheckedChanged);
+            // 
+            // noClausesTrackBar
+            // 
+            this.noClausesTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.noClausesTrackBar.Enabled = false;
+            this.noClausesTrackBar.Location = new System.Drawing.Point(6, 56);
+            this.noClausesTrackBar.Maximum = 800;
+            this.noClausesTrackBar.Minimum = 200;
+            this.noClausesTrackBar.Name = "noClausesTrackBar";
+            this.noClausesTrackBar.Size = new System.Drawing.Size(732, 69);
+            this.noClausesTrackBar.TabIndex = 0;
+            this.noClausesTrackBar.Value = 200;
+            this.noClausesTrackBar.Scroll += new System.EventHandler(this.noClausesTrackBar_Scroll);
+            // 
+            // extraGroupBox
+            // 
+            this.extraGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.extraGroupBox.Controls.Add(this.repetitionsLabel);
+            this.extraGroupBox.Controls.Add(this.repetitionsUpDown);
+            this.extraGroupBox.Controls.Add(this.generatorTypeLabel);
+            this.extraGroupBox.Controls.Add(this.generatorTypeComboBox);
+            this.extraGroupBox.Location = new System.Drawing.Point(423, 12);
+            this.extraGroupBox.Name = "extraGroupBox";
+            this.extraGroupBox.Size = new System.Drawing.Size(333, 95);
+            this.extraGroupBox.TabIndex = 19;
+            this.extraGroupBox.TabStop = false;
+            this.extraGroupBox.Text = "Additional Settings";
+            // 
+            // repetitionsLabel
+            // 
+            this.repetitionsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.repetitionsLabel.AutoSize = true;
+            this.repetitionsLabel.Location = new System.Drawing.Point(7, 60);
+            this.repetitionsLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.repetitionsLabel.Name = "repetitionsLabel";
+            this.repetitionsLabel.Size = new System.Drawing.Size(165, 20);
+            this.repetitionsLabel.TabIndex = 21;
+            this.repetitionsLabel.Text = "Number of Repetitons";
+            // 
+            // repetitionsUpDown
+            // 
+            this.repetitionsUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.repetitionsUpDown.Location = new System.Drawing.Point(179, 58);
+            this.repetitionsUpDown.Maximum = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.repetitionsUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.repetitionsUpDown.Name = "repetitionsUpDown";
+            this.repetitionsUpDown.Size = new System.Drawing.Size(148, 26);
+            this.repetitionsUpDown.TabIndex = 20;
+            this.repetitionsUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // basicGroupBox
+            // 
+            this.basicGroupBox.Controls.Add(this.fileNameLabel);
+            this.basicGroupBox.Controls.Add(this.noOfVariablesLabel);
+            this.basicGroupBox.Controls.Add(this.fileNameTextBox);
+            this.basicGroupBox.Controls.Add(this.noOfVariableUpDown);
+            this.basicGroupBox.Location = new System.Drawing.Point(12, 12);
+            this.basicGroupBox.Name = "basicGroupBox";
+            this.basicGroupBox.Size = new System.Drawing.Size(405, 95);
+            this.basicGroupBox.TabIndex = 20;
+            this.basicGroupBox.TabStop = false;
+            this.basicGroupBox.Text = "Basic Settings";
             // 
             // Generator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(960, 329);
-            this.Controls.Add(this.noOfClausesNumericUpDown);
-            this.Controls.Add(this.noOfClausesLabel);
-            this.Controls.Add(this.continousComboBox);
-            this.Controls.Add(this.discreteComboBox);
-            this.Controls.Add(this.continousRadioButton);
-            this.Controls.Add(this.discreteRadioButton);
-            this.Controls.Add(this.generatorTypeComboBox);
-            this.Controls.Add(this.generatorTypeLabel);
+            this.ClientSize = new System.Drawing.Size(771, 403);
+            this.Controls.Add(this.basicGroupBox);
+            this.Controls.Add(this.extraGroupBox);
+            this.Controls.Add(this.numberGroupBox);
+            this.Controls.Add(this.lengthGroupBox);
             this.Controls.Add(this.successLabel);
-            this.Controls.Add(this.maxLengthOfClauseUpDown);
-            this.Controls.Add(this.maxLengthOfClauseLabel);
-            this.Controls.Add(this.noOfVariableUpDown);
-            this.Controls.Add(this.noOfVariablesLabel);
-            this.Controls.Add(this.fileNameTextBox);
-            this.Controls.Add(this.fileNameLabel);
             this.Controls.Add(this.generateButton);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Generator";
             this.Text = "DIMACS Generator";
             this.Load += new System.EventHandler(this.Generator_Load);
             ((System.ComponentModel.ISupportInitialize)(this.noOfVariableUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.maxLengthOfClauseUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.noOfClausesNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maxLengthClauseUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fixedNoClausesUpDown)).EndInit();
+            this.lengthGroupBox.ResumeLayout(false);
+            this.lengthGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.fixedLengthClauseUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.avgLengthClauseUpDown)).EndInit();
+            this.numberGroupBox.ResumeLayout(false);
+            this.numberGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.relativeNoClausesUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maxNoClausesUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.noClausesTrackBar)).EndInit();
+            this.extraGroupBox.ResumeLayout(false);
+            this.extraGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.repetitionsUpDown)).EndInit();
+            this.basicGroupBox.ResumeLayout(false);
+            this.basicGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,17 +520,28 @@ namespace Generator
         private System.Windows.Forms.TextBox fileNameTextBox;
         private System.Windows.Forms.Label noOfVariablesLabel;
         private System.Windows.Forms.NumericUpDown noOfVariableUpDown;
-        private System.Windows.Forms.Label maxLengthOfClauseLabel;
-        private System.Windows.Forms.NumericUpDown maxLengthOfClauseUpDown;
+        private System.Windows.Forms.NumericUpDown maxLengthClauseUpDown;
         private System.Windows.Forms.Label successLabel;
         private System.Windows.Forms.Label generatorTypeLabel;
         private System.Windows.Forms.ComboBox generatorTypeComboBox;
-        private System.Windows.Forms.RadioButton discreteRadioButton;
-        private System.Windows.Forms.RadioButton continousRadioButton;
-        private System.Windows.Forms.ComboBox discreteComboBox;
-        private System.Windows.Forms.ComboBox continousComboBox;
-        private System.Windows.Forms.Label noOfClausesLabel;
-        private System.Windows.Forms.NumericUpDown noOfClausesNumericUpDown;
+        private System.Windows.Forms.NumericUpDown fixedNoClausesUpDown;
+        private System.Windows.Forms.GroupBox lengthGroupBox;
+        private System.Windows.Forms.GroupBox numberGroupBox;
+        private System.Windows.Forms.TrackBar noClausesTrackBar;
+        private System.Windows.Forms.GroupBox extraGroupBox;
+        private System.Windows.Forms.Label repetitionsLabel;
+        private System.Windows.Forms.NumericUpDown repetitionsUpDown;
+        private System.Windows.Forms.GroupBox basicGroupBox;
+        private System.Windows.Forms.RadioButton fixedLengthClauseRadioButton;
+        private System.Windows.Forms.RadioButton avgLengthClauseRadioButton;
+        private System.Windows.Forms.RadioButton maxLengthClauseRadioButton;
+        private System.Windows.Forms.RadioButton fixedNoClausesRadioButton;
+        private System.Windows.Forms.RadioButton relativeNoClausesRadioButton;
+        private System.Windows.Forms.RadioButton maxNoClausesRadioButton;
+        private System.Windows.Forms.NumericUpDown maxNoClausesUpDown;
+        private System.Windows.Forms.NumericUpDown avgLengthClauseUpDown;
+        private System.Windows.Forms.NumericUpDown fixedLengthClauseUpDown;
+        private System.Windows.Forms.NumericUpDown relativeNoClausesUpDown;
     }
 }
 
