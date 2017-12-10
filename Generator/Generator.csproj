@@ -55,7 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Dimacs.cs" />
+    <Compile Include="Models\GenerationModel.cs" />
     <Compile Include="Generator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,8 +63,9 @@
       <DependentUpon>Generator.cs</DependentUpon>
     </Compile>
     <Compile Include="GeneratorImpl.cs" />
-    <Compile Include="Interfaces\IGeneratorImpl.cs" />
     <Compile Include="Models\GeneratorTypeEnum.cs" />
+    <Compile Include="Models\LengthOfClauseTypeEnum.cs" />
+    <Compile Include="Models\NoOfClausesTypeEnum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Generator.resx">

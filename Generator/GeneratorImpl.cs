@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Troschuetz.Random.Generators;
 
 namespace Generator
@@ -15,8 +16,6 @@ namespace Generator
     {
         private AbstractGenerator _generator;
         private GenerationModel _generationModel;
-
-        private const double negationPropability = 0.5;
 
         public GeneratorImpl(GenerationModel generationModel)
         {
@@ -62,11 +61,19 @@ namespace Generator
         {
             var clauseLength = randomClauseLength ? _generator.Next(1, clauseLengthIndicator + 1) : clauseLengthIndicator;
             var clause = new List<int>();
-            for (int j = 0; j < clauseLength; j++)
+            for (int i = 0; i < clauseLength; i++)
             {
-                var factor = _generator.NextDouble() > negationPropability ? 1 : -1;
-                var variable = _generator.Next(1, noOfVariables + 1);
-                clause.Add(variable * factor);
+                var factor = _generator.NextDouble() > _generationModel.NegationPropability ? 1 : -1;
+                var variable = _generator.Next(1, noOfVariables + 1) * factor;
+                if (clause.Any(c => c == variable))
+                {
+                    i--;
+                }
+                else
+                {
+                    clause.Add(variable * factor);
+                }
+                
             }
             return clause;
         }

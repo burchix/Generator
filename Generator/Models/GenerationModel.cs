@@ -12,5 +12,6 @@ namespace Generator.Models
         public int LengthOfClauseValue { get; set; }
         public NoOfClausesTypeEnum NoOfClausesType { get; set; }
         public int NoOfClausesValue { get; set; }
+        public double NegationPropability { get; set; }
     }
 }

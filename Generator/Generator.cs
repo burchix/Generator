@@ -33,6 +33,7 @@ namespace Generator
                 LengthOfClauseValue = lengthOfClausesTuple.Item2,
                 NoOfClausesType = noOfClauseTuple.Item1,
                 NoOfClausesValue = noOfClauseTuple.Item2,
+                NegationPropability = (double)negPropUpDown.Value,
             };
             var generatorImpl = new GeneratorImpl(generationModel);
             var result = generatorImpl.generate();
