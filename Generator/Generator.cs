@@ -1,5 +1,4 @@
-﻿using Generator.Interfaces;
-using Generator.Models;
+﻿using Generator.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -22,8 +21,8 @@ namespace Generator
 
         private void generateButton_Click(object sender, EventArgs e)
         {
-            var noOfClauseTuple = getNoOfClausesType();
-            var lengthOfClausesTuple = getLengthOfClauseType();
+            var noOfClauseTuple = getNoOfClauses();
+            var lengthOfClausesTuple = getLengthOfClause();
             var generationModel = new GenerationModel
             {
                 GeneratorType = (GeneratorTypeEnum)generatorTypeComboBox.SelectedItem,
@@ -38,29 +37,29 @@ namespace Generator
             var generatorImpl = new GeneratorImpl(generationModel);
             var result = generatorImpl.generate();
 
-            var message = true ? "Your dimacs was succesfully generated" : "There was a problem during generation of your dimacs";
+            var message = $"Successfully generated dimacs: {result} / {generationModel.NoOfRepetitions}";
             MessageBox.Show(message);
         }
 
-        private Tuple<NoOfClausesTypeEnum, int> getNoOfClausesType()
+        private Tuple<NoOfClausesTypeEnum, int> getNoOfClauses()
         {
             return fixedNoClausesRadioButton.Checked 
                 ? new Tuple<NoOfClausesTypeEnum, int>(NoOfClausesTypeEnum.Fixed, (int)fixedNoClausesUpDown.Value)
                 : maxNoClausesRadioButton.Checked 
                     ? new Tuple<NoOfClausesTypeEnum, int>(NoOfClausesTypeEnum.Max, (int)maxNoClausesUpDown.Value)
                     : relativeNoClausesRadioButton.Checked 
-                        ? new Tuple<NoOfClausesTypeEnum, int>(NoOfClausesTypeEnum.Relative, (int)relativeNoClausesUpDown.Value)
+                        ? new Tuple<NoOfClausesTypeEnum, int>(NoOfClausesTypeEnum.Relative, (int)(relativeNoClausesUpDown.Value * noOfVariableUpDown.Value))
                         : new Tuple<NoOfClausesTypeEnum, int>(NoOfClausesTypeEnum.Unknown, 0);
         }
 
-        private Tuple<LengthOfClauseTypeEnum, int> getLengthOfClauseType()
+        private Tuple<LengthOfClauseTypeEnum, int> getLengthOfClause()
         {
             return maxLengthClauseRadioButton.Checked 
                 ? new Tuple<LengthOfClauseTypeEnum, int>(LengthOfClauseTypeEnum.Max, (int)maxLengthClauseUpDown.Value)
                 : fixedLengthClauseRadioButton.Checked
                     ? new Tuple<LengthOfClauseTypeEnum, int>(LengthOfClauseTypeEnum.Fixed, (int)fixedLengthClauseUpDown.Value)
                     : avgLengthClauseRadioButton.Checked 
-                        ? new Tuple<LengthOfClauseTypeEnum, int>(LengthOfClauseTypeEnum.Avg, (int) avgLengthClauseUpDown.Value)
+                        ? new Tuple<LengthOfClauseTypeEnum, int>(LengthOfClauseTypeEnum.Avg, (int)(avgLengthClauseUpDown.Value * 2))
                         :  new Tuple<LengthOfClauseTypeEnum, int>(LengthOfClauseTypeEnum.Unknown, 0);
         }
 

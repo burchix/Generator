@@ -1,6 +1,4 @@
-﻿
-using Generator.Interfaces;
-using Generator.Models;
+﻿using Generator.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -8,61 +6,89 @@ using Troschuetz.Random.Generators;
 
 namespace Generator
 {
+    interface IGeneratorImpl
+    {
+        int generate();
+    }
+
     class GeneratorImpl : IGeneratorImpl
     {
-        private AbstractGenerator _generator;      
+        private AbstractGenerator _generator;
+        private GenerationModel _generationModel;
 
-        public GeneratorImpl(GeneratorTypeEnum generatorType)
+        private const double negationPropability = 0.5;
+
+        public GeneratorImpl(GenerationModel generationModel)
         {
-            _generator = getGenerator(generatorType);
+            _generationModel = generationModel;
+            _generator = getGenerator(generationModel.GeneratorType);
         }
 
-        public Dimacs generate(int noOfVariables = 0, int noOfClauses = 0, int maxLengthOfClause = 100)
+        public int generate()
         {
-            Dimacs dimacs = new Dimacs();
-            Random rng = new Random();
-            dimacs.NoOfVariables = noOfVariables > 0 ? noOfVariables : rng.Next(1, 50001);
-            dimacs.NoOfClauses = noOfClauses > 0 ? noOfClauses : rng.Next(1, 750000);
-            dimacs.Clauses = GenerateClauses(dimacs.NoOfVariables, dimacs.NoOfClauses, maxLengthOfClause);
-            WriteFormula(dimacs, "filename");
-            return dimacs;
-        }
-
-        private void WriteFormula(Dimacs dimacs, string fileName)
-        {
-            using (var file = new StreamWriter(fileName))
+            var successCount = 0;
+            for (int i = 0; i < _generationModel.NoOfRepetitions; i++)
             {
-                WrtiteFirstLine(file, dimacs.NoOfClauses, dimacs.NoOfVariables);
-                dimacs.Clauses.ForEach(c =>
-                {
-                    WriteClause(file, c);
-                });
+                var randomClauseNumber = _generationModel.NoOfClausesType == NoOfClausesTypeEnum.Max;
+                successCount += GenerateFormula(_generationModel.FileName + $".{i}.txt", _generationModel.NoOfClausesValue, randomClauseNumber);
             }
+            return successCount;
         }
 
-        List<List<int>> GenerateClauses(int noOfVariables, int noOfClauses, int maxLengthOfClause)
+        private int GenerateFormula(string fileName, int clauseNumberIndicator, bool randomClauseNumber = false)
         {
-            var random = new Random();
-            var clauses = new List<List<int>>();
-            for(int i = 0; i < noOfClauses; i++)
+            using (StreamWriter file = new StreamWriter(fileName))
             {
-                var clause = new List<int>();
-                var clauseLength = random.Next(1, maxLengthOfClause + 1);
-                for (int j = 0; j < clauseLength; j ++)
+                try
                 {
-                    var factor = random.NextDouble() > 0.5 ? 1 : -1;
-                    var variable = _generator.Next(1, noOfVariables + 1);
-                    clause.Add(variable * factor);
+                    var clauseNumber = randomClauseNumber ? _generator.Next(1, clauseNumberIndicator + 1) : clauseNumberIndicator;
+                    WriteFirstLine(file, clauseNumber, _generationModel.NoOfVariables);
+                    for (int i = 0; i < clauseNumber; i++)
+                    {
+                        var randomLength = _generationModel.LengthOfClauseType != LengthOfClauseTypeEnum.Fixed;
+                        var clause = GenerateClause(_generationModel.NoOfVariables, _generationModel.LengthOfClauseValue, randomLength);
+                        WriteClause(file, clause);
+                    }
+                    return 1;
                 }
-                clauses.Add(clause);
+                catch (Exception e)
+                {
+                    return 0;
+                }
             }
-            return clauses;
+        }
+
+        private List<int> GenerateClause(int noOfVariables, int clauseLengthIndicator, bool randomClauseLength = false)
+        {
+            var clauseLength = randomClauseLength ? _generator.Next(1, clauseLengthIndicator + 1) : clauseLengthIndicator;
+            var clause = new List<int>();
+            for (int j = 0; j < clauseLength; j++)
+            {
+                var factor = _generator.NextDouble() > negationPropability ? 1 : -1;
+                var variable = _generator.Next(1, noOfVariables + 1);
+                clause.Add(variable * factor);
+            }
+            return clause;
+        }
+
+        private bool WriteFirstLine(StreamWriter file, int noOfClauses, int noOfVariables)
+        {
+            var problemLine = $"p cnf {noOfVariables} {noOfClauses}";
+            file.WriteLine(problemLine);
+            return true;
+        }
+
+        private bool WriteClause(StreamWriter file, List<int> clause)
+        {
+            var line = string.Join(" ", clause) + " 0";
+            file.WriteLine(line);
+            return true;
         }
 
         private AbstractGenerator getGenerator(GeneratorTypeEnum _generatorType)
         {
             switch (_generatorType)
-            {               
+            {
                 case GeneratorTypeEnum.Alf:
                     return new ALFGenerator();
                 case GeneratorTypeEnum.Mt:
@@ -72,20 +98,6 @@ namespace Generator
                 default:
                     return new StandardGenerator();
             }
-        }
-
-        public bool WrtiteFirstLine(StreamWriter file, int noOfClauses, int noOfVariables)
-        {
-            var problemLine = $"p cnf {noOfVariables} {noOfClauses}";
-            file.WriteLine(problemLine);
-            return true;
-        }
-
-        public bool WriteClause(StreamWriter file, List<int> clause)
-        {
-            var line = string.Join(" ", clause) + " 0";
-            file.WriteLine(line);
-            return true;
         }
     }
 }
