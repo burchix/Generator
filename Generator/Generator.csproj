@@ -55,6 +55,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers\CnfClauseWriter.cs" />
+    <Compile Include="Helpers\GeneratorResolver.cs" />
     <Compile Include="Models\GenerationModel.cs" />
     <Compile Include="Generator.cs">
       <SubType>Form</SubType>

@@ -1,4 +1,5 @@
-﻿using Generator.Models;
+﻿using Generator.Helpers;
+using Generator.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,11 +17,13 @@ namespace Generator
     {
         private AbstractGenerator _generator;
         private GenerationModel _generationModel;
+        private CnfClauseWriter _clauseWriter;
 
         public GeneratorImpl(GenerationModel generationModel)
         {
             _generationModel = generationModel;
-            _generator = getGenerator(generationModel.GeneratorType);
+            _generator = GeneratorResolver.getGenerator(generationModel.GeneratorType);
+            _clauseWriter = new CnfClauseWriter();
         }
 
         public int generate()
@@ -29,7 +32,7 @@ namespace Generator
             for (int i = 0; i < _generationModel.NoOfRepetitions; i++)
             {
                 var randomClauseNumber = _generationModel.NoOfClausesType == NoOfClausesTypeEnum.Max;
-                successCount += GenerateFormula(_generationModel.FileName + $".{i}.txt", _generationModel.NoOfClausesValue, randomClauseNumber);
+                successCount += GenerateFormula(_generationModel.FileName + $".{i}.cnf", _generationModel.NoOfClausesValue, randomClauseNumber);
             }
             return successCount;
         }
@@ -41,12 +44,12 @@ namespace Generator
                 try
                 {
                     var clauseNumber = randomClauseNumber ? _generator.Next(1, clauseNumberIndicator + 1) : clauseNumberIndicator;
-                    WriteFirstLine(file, clauseNumber, _generationModel.NoOfVariables);
+                    _clauseWriter.WriteProblemLine(file, clauseNumber, _generationModel.NoOfVariables);
                     for (int i = 0; i < clauseNumber; i++)
                     {
                         var randomLength = _generationModel.LengthOfClauseType != LengthOfClauseTypeEnum.Fixed;
                         var clause = GenerateClause(_generationModel.NoOfVariables, _generationModel.LengthOfClauseValue, randomLength);
-                        WriteClause(file, clause);
+                        _clauseWriter.WriteClause(file, clause);
                     }
                     return 1;
                 }
@@ -61,50 +64,22 @@ namespace Generator
         {
             var clauseLength = randomClauseLength ? _generator.Next(1, clauseLengthIndicator + 1) : clauseLengthIndicator;
             var clause = new List<int>();
-            for (int i = 0; i < clauseLength; i++)
+            for (int i = 0, j = 0; i < clauseLength; i++)
             {
                 var factor = _generator.NextDouble() > _generationModel.NegationPropability ? 1 : -1;
                 var variable = _generator.Next(1, noOfVariables + 1) * factor;
-                if (clause.Any(c => c == variable))
+                if (clause.Any(c => c == variable) && j < noOfVariables * 1000)
                 {
                     i--;
+                    j++;
                 }
                 else
                 {
-                    clause.Add(variable * factor);
-                }
-                
+                    clause.Add(variable);
+                    j = 0;
+                }             
             }
             return clause;
-        }
-
-        private bool WriteFirstLine(StreamWriter file, int noOfClauses, int noOfVariables)
-        {
-            var problemLine = $"p cnf {noOfVariables} {noOfClauses}";
-            file.WriteLine(problemLine);
-            return true;
-        }
-
-        private bool WriteClause(StreamWriter file, List<int> clause)
-        {
-            var line = string.Join(" ", clause) + " 0";
-            file.WriteLine(line);
-            return true;
-        }
-
-        private AbstractGenerator getGenerator(GeneratorTypeEnum _generatorType)
-        {
-            switch (_generatorType)
-            {
-                case GeneratorTypeEnum.Alf:
-                    return new ALFGenerator();
-                case GeneratorTypeEnum.Mt:
-                    return new MT19937Generator();
-                case GeneratorTypeEnum.XorShift:
-                    return new XorShift128Generator();
-                default:
-                    return new StandardGenerator();
-            }
         }
     }
 }

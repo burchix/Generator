@@ -1,8 +1,5 @@
 ﻿using Generator.Models;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Generator
@@ -35,7 +32,7 @@ namespace Generator
                 NoOfClausesValue = noOfClauseTuple.Item2,
                 NegationPropability = (double)negPropUpDown.Value,
             };
-            var generatorImpl = new GeneratorImpl(generationModel);
+            IGeneratorImpl generatorImpl = new GeneratorImpl(generationModel);
             var result = generatorImpl.generate();
 
             var message = $"Successfully generated dimacs: {result} / {generationModel.NoOfRepetitions}";
