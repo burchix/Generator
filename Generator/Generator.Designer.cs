@@ -48,6 +48,8 @@ namespace Generator
             this.avgLengthClauseRadioButton = new System.Windows.Forms.RadioButton();
             this.maxLengthClauseRadioButton = new System.Windows.Forms.RadioButton();
             this.numberGroupBox = new System.Windows.Forms.GroupBox();
+            this.easyUnsatLabel = new System.Windows.Forms.Label();
+            this.easySatLlabel = new System.Windows.Forms.Label();
             this.relativeNoClausesUpDown = new System.Windows.Forms.NumericUpDown();
             this.maxNoClausesUpDown = new System.Windows.Forms.NumericUpDown();
             this.fixedNoClausesRadioButton = new System.Windows.Forms.RadioButton();
@@ -55,13 +57,11 @@ namespace Generator
             this.maxNoClausesRadioButton = new System.Windows.Forms.RadioButton();
             this.noClausesTrackBar = new System.Windows.Forms.TrackBar();
             this.extraGroupBox = new System.Windows.Forms.GroupBox();
+            this.negPropUpDown = new System.Windows.Forms.NumericUpDown();
+            this.negPropLabel = new System.Windows.Forms.Label();
             this.repetitionsLabel = new System.Windows.Forms.Label();
             this.repetitionsUpDown = new System.Windows.Forms.NumericUpDown();
             this.basicGroupBox = new System.Windows.Forms.GroupBox();
-            this.negPropLabel = new System.Windows.Forms.Label();
-            this.negPropUpDown = new System.Windows.Forms.NumericUpDown();
-            this.easySatLlabel = new System.Windows.Forms.Label();
-            this.easyUnsatLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.noOfVariableUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxLengthClauseUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fixedNoClausesUpDown)).BeginInit();
@@ -73,9 +73,9 @@ namespace Generator
             ((System.ComponentModel.ISupportInitialize)(this.maxNoClausesUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.noClausesTrackBar)).BeginInit();
             this.extraGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.negPropUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repetitionsUpDown)).BeginInit();
             this.basicGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.negPropUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // generateButton
@@ -194,7 +194,7 @@ namespace Generator
             // 
             this.fixedNoClausesUpDown.Location = new System.Drawing.Point(511, 25);
             this.fixedNoClausesUpDown.Maximum = new decimal(new int[] {
-            750000,
+            2000000,
             0,
             0,
             0});
@@ -332,6 +332,30 @@ namespace Generator
             this.numberGroupBox.TabStop = false;
             this.numberGroupBox.Text = "Number of Clauses Settings";
             // 
+            // easyUnsatLabel
+            // 
+            this.easyUnsatLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.easyUnsatLabel.AutoSize = true;
+            this.easyUnsatLabel.Location = new System.Drawing.Point(638, 104);
+            this.easyUnsatLabel.Name = "easyUnsatLabel";
+            this.easyUnsatLabel.Size = new System.Drawing.Size(100, 20);
+            this.easyUnsatLabel.TabIndex = 22;
+            this.easyUnsatLabel.Text = "easy UNSAT";
+            // 
+            // easySatLlabel
+            // 
+            this.easySatLlabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.easySatLlabel.AutoSize = true;
+            this.easySatLlabel.Location = new System.Drawing.Point(7, 104);
+            this.easySatLlabel.Name = "easySatLlabel";
+            this.easySatLlabel.Size = new System.Drawing.Size(77, 20);
+            this.easySatLlabel.TabIndex = 21;
+            this.easySatLlabel.Text = "easy SAT";
+            // 
             // relativeNoClausesUpDown
             // 
             this.relativeNoClausesUpDown.DecimalPlaces = 2;
@@ -366,7 +390,7 @@ namespace Generator
             // 
             this.maxNoClausesUpDown.Location = new System.Drawing.Point(511, 25);
             this.maxNoClausesUpDown.Maximum = new decimal(new int[] {
-            750000,
+            2000000,
             0,
             0,
             0});
@@ -440,6 +464,42 @@ namespace Generator
             this.extraGroupBox.TabStop = false;
             this.extraGroupBox.Text = "Additional Settings";
             // 
+            // negPropUpDown
+            // 
+            this.negPropUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.negPropUpDown.DecimalPlaces = 2;
+            this.negPropUpDown.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.negPropUpDown.Location = new System.Drawing.Point(179, 90);
+            this.negPropUpDown.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.negPropUpDown.Name = "negPropUpDown";
+            this.negPropUpDown.Size = new System.Drawing.Size(147, 26);
+            this.negPropUpDown.TabIndex = 23;
+            this.negPropUpDown.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            // 
+            // negPropLabel
+            // 
+            this.negPropLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.negPropLabel.AutoSize = true;
+            this.negPropLabel.Location = new System.Drawing.Point(7, 92);
+            this.negPropLabel.Name = "negPropLabel";
+            this.negPropLabel.Size = new System.Drawing.Size(149, 20);
+            this.negPropLabel.TabIndex = 22;
+            this.negPropLabel.Text = "Negation Propability";
+            // 
             // repetitionsLabel
             // 
             this.repetitionsLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -491,66 +551,6 @@ namespace Generator
             this.basicGroupBox.TabStop = false;
             this.basicGroupBox.Text = "Basic Settings";
             // 
-            // negPropLabel
-            // 
-            this.negPropLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.negPropLabel.AutoSize = true;
-            this.negPropLabel.Location = new System.Drawing.Point(7, 92);
-            this.negPropLabel.Name = "negPropLabel";
-            this.negPropLabel.Size = new System.Drawing.Size(149, 20);
-            this.negPropLabel.TabIndex = 22;
-            this.negPropLabel.Text = "Negation Propability";
-            // 
-            // negPropUpDown
-            // 
-            this.negPropUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.negPropUpDown.DecimalPlaces = 2;
-            this.negPropUpDown.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            131072});
-            this.negPropUpDown.Location = new System.Drawing.Point(179, 90);
-            this.negPropUpDown.Maximum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.negPropUpDown.Name = "negPropUpDown";
-            this.negPropUpDown.Size = new System.Drawing.Size(147, 26);
-            this.negPropUpDown.TabIndex = 23;
-            this.negPropUpDown.Value = new decimal(new int[] {
-            5,
-            0,
-            0,
-            65536});
-            // 
-            // easySatLlabel
-            // 
-            this.easySatLlabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.easySatLlabel.AutoSize = true;
-            this.easySatLlabel.Location = new System.Drawing.Point(7, 104);
-            this.easySatLlabel.Name = "easySatLlabel";
-            this.easySatLlabel.Size = new System.Drawing.Size(77, 20);
-            this.easySatLlabel.TabIndex = 21;
-            this.easySatLlabel.Text = "easy SAT";
-            // 
-            // easyUnsatLabel
-            // 
-            this.easyUnsatLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.easyUnsatLabel.AutoSize = true;
-            this.easyUnsatLabel.Location = new System.Drawing.Point(638, 104);
-            this.easyUnsatLabel.Name = "easyUnsatLabel";
-            this.easyUnsatLabel.Size = new System.Drawing.Size(100, 20);
-            this.easyUnsatLabel.TabIndex = 22;
-            this.easyUnsatLabel.Text = "easy UNSAT";
-            // 
             // Generator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -583,10 +583,10 @@ namespace Generator
             ((System.ComponentModel.ISupportInitialize)(this.noClausesTrackBar)).EndInit();
             this.extraGroupBox.ResumeLayout(false);
             this.extraGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.negPropUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repetitionsUpDown)).EndInit();
             this.basicGroupBox.ResumeLayout(false);
             this.basicGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.negPropUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

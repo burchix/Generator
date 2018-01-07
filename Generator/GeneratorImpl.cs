@@ -43,12 +43,14 @@ namespace Generator
             {
                 try
                 {
+                    clauseNumberIndicator = clauseNumberIndicator == 0 ? _generator.Next(1, 2000001) : clauseNumberIndicator;
                     var clauseNumber = randomClauseNumber ? _generator.Next(1, clauseNumberIndicator + 1) : clauseNumberIndicator;
                     _clauseWriter.WriteProblemLine(file, clauseNumber, _generationModel.NoOfVariables);
                     for (int i = 0; i < clauseNumber; i++)
                     {
                         var randomLength = _generationModel.LengthOfClauseType != LengthOfClauseTypeEnum.Fixed;
-                        var clause = GenerateClause(_generationModel.NoOfVariables, _generationModel.LengthOfClauseValue, randomLength);
+                        var clauseLengthIndicator = _generationModel.LengthOfClauseValue == 0 ? _generator.Next(1, 201) : _generationModel.LengthOfClauseValue;
+                        var clause = GenerateClause(_generationModel.NoOfVariables, clauseLengthIndicator, randomLength);
                         _clauseWriter.WriteClause(file, clause);
                     }
                     return 1;
